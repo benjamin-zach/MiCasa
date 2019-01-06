@@ -6,26 +6,33 @@
         xmlns:local="clr-namespace:MiCasaUI"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="2*"/>
-		</Grid.ColumnDefinitions>
-		<Grid Grid.Column="0">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="50"/>
-			</Grid.RowDefinitions>
-			<ListView Grid.Row="0">
-				
-			</ListView>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_Options">
+                <MenuItem Header="_Set Data Base" Click="OnSetDataBaseMenuItemClicked"/>
+            </MenuItem>
+        </Menu>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <ListView Grid.Row="0">
 
-			<UniformGrid Grid.Row="1" Columns="3">
-				<Button Margin="5 5 5 5" Name="addRecepyButton" Content="Add"/>
-				<Button Margin="5 5 5 5" Name="removeRecepyButton" Content="Remove"/>
-				<Button Margin="5 5 5 5" Name="refreshRecepiesButton" Content="Refresh"/>
-			</UniformGrid>
-		</Grid>
-		
-    </Grid>
+                </ListView>
+
+                <UniformGrid Grid.Row="1" Columns="3">
+                    <Button Margin="5 5 5 5" Name="addRecepyButton" Content="Add"/>
+                    <Button Margin="5 5 5 5" Name="removeRecepyButton" Content="Remove"/>
+                    <Button Margin="5 5 5 5" Name="refreshRecepiesButton" Content="Refresh"/>
+                </UniformGrid>
+            </Grid>
+
+        </Grid>
+    </DockPanel>
 </Window>

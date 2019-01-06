@@ -29,6 +29,12 @@ namespace MiCasaUI
             refreshRecepiesButton.Click += OnRefreshRecepiesButtonClicked;
         }
 
+        private void OnSetDataBaseMenuItemClicked(object sender, RoutedEventArgs e)
+        {
+            OptionsWindow optionsWindow = new OptionsWindow();
+            optionsWindow.Show();
+        }
+
         private void OnAddRecepyButtonClicked(object sender, RoutedEventArgs e)
         {
             AddRecepyWindow addRecepyWindow = new AddRecepyWindow();

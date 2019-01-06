@@ -1,0 +1,17 @@
+﻿<Window x:Class="MiCasaUI.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiCasaUI"
+        mc:Ignorable="d"
+        Title="Options" Height="130" Width="400">
+    <StackPanel Margin="5 5 5 5">
+        <Label Content="Local Data Base File:"/>
+        <TextBox Name="localDataBaseFilePathTextBox" Margin="15 0 10 0" Background="AliceBlue"/>
+        <StackPanel Margin="10 10 10 10" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="5 5 5 5" Width="80" Name="okButton" Content="OK"/>
+            <Button Margin="5 5 5 5" Width="80" Name="cancelButton" Content="Cancel"/>
+        </StackPanel>
+    </StackPanel>
+</Window>
