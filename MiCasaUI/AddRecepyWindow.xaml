@@ -36,8 +36,13 @@
 			<TextBox DockPanel.Dock="top" Background="AliceBlue" TextWrapping="Wrap" AcceptsReturn="True" Height="100"/>
 			<Label DockPanel.Dock="top" Content="Ingredients:"/>
 			<ListView DockPanel.Dock="top" Height="150" Background="AliceBlue"/>
+            <UniformGrid Margin="0 0 0 0" DockPanel.Dock="Top" Columns="3">
+                <TextBox Margin="0 0 0 0" HorizontalAlignment="Stretch" Name="newIngredientNameTextBox"/>
+                <TextBox Margin="0 0 0 0" Width="50" Name="newIngredientAmountTextBox"/>
+                <ComboBox Margin="0 0 0 0" Width="50" Name="newIngredientUnitComboBox"/>
+            </UniformGrid>
 			<UniformGrid DockPanel.Dock="Bottom" Height="50">
-				<Button Background="Teal" Name="addIngredientButton" Content="Add"/>
+				<Button Background="Beige" Name="addIngredientButton" Content="Add"/>
 				<Button Background="BlanchedAlmond" Name="removeIngredientButton" Content="Remove"/>
 			</UniformGrid>
 		</DockPanel>

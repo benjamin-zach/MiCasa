@@ -23,6 +23,30 @@ namespace MiCasaUI
         {
             InitializeComponent();
 
+            addIngredientButton.Click += OnAddIngredientButtonClicked;
+            removeIngredientButton.Click += OnRemoveIngredientButtonClicked;
+            okButton.Click += OnOkButtonClicked;
+            cancelButton.Click += OnCancelButtonClicked;
+        }
+
+        private void OnAddIngredientButtonClicked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnRemoveIngredientButtonClicked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnOkButtonClicked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void OnCancelButtonClicked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
