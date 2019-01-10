@@ -9,6 +9,7 @@ namespace MiCasaUI
     public interface BackendFacilities
     {
         Ingredient GetIngredient(int id);
+        Ingredient GetIngredient(string name);
         Recepy GetRecepy(int id);
         List<IngredientInRecepy> GetIngredientsInRecepy(int recepyId);
         List<Recepy> GetRecepies();

@@ -8,14 +8,14 @@
         Title="Add Recepy" Height="600" Width="300">
 	<Window.Resources>
 		<Thickness x:Key="LabelMargin">0 15 5 5</Thickness>
-		<Thickness x:Key="TextBoxMargin">10 5 5 5</Thickness>
-	</Window.Resources>
+        <Thickness x:Key="TextBoxMargin">10 5 5 5</Thickness>
+    </Window.Resources>
 	<Grid Margin="5 5 5 5" >
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="50"/>
 		</Grid.RowDefinitions>
-		<DockPanel LastChildFill="True" Margin="5 5 5 5" Grid.Row="0">
+		<DockPanel Margin="5 5 5 5" Grid.Row="0">
 			<DockPanel.Resources>
 				<Style x:Key="Style0" TargetType="{x:Type Label}">
 					<Setter Property="Margin" Value="{StaticResource LabelMargin}"/>
@@ -31,17 +31,38 @@
 				</Style>
 			</DockPanel.Resources>
 			<Label DockPanel.Dock="top" Margin="0 5 0 5" Content="Name:"/>
-			<TextBox DockPanel.Dock="top" Background="AliceBlue"/>
+			<TextBox Name="recepyNameTextBox" DockPanel.Dock="top" Background="AliceBlue"/>
 			<Label DockPanel.Dock="top" Content="Description:"/>
-			<TextBox DockPanel.Dock="top" Background="AliceBlue" TextWrapping="Wrap" AcceptsReturn="True" Height="100"/>
+			<TextBox Name="recepyDescriptionTextBox" DockPanel.Dock="top" Background="AliceBlue" TextWrapping="Wrap" AcceptsReturn="True" Height="100"/>
 			<Label DockPanel.Dock="top" Content="Ingredients:"/>
-			<ListView DockPanel.Dock="top" Height="150" Background="AliceBlue"/>
-            <UniformGrid Margin="0 0 0 0" DockPanel.Dock="Top" Columns="3">
-                <TextBox Margin="0 0 0 0" HorizontalAlignment="Stretch" Name="newIngredientNameTextBox"/>
-                <TextBox Margin="0 0 0 0" Width="50" Name="newIngredientAmountTextBox"/>
-                <ComboBox Margin="0 0 0 0" Width="50" Name="newIngredientUnitComboBox"/>
-            </UniformGrid>
-			<UniformGrid DockPanel.Dock="Bottom" Height="50">
+            <ListView Name="ingredientsListView" ItemsSource="{Binding}" DockPanel.Dock="top" Height="150" Background="AliceBlue">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" Width="160" DisplayMemberBinding="{Binding name}"  />
+                        <GridViewColumn Header="Amount" Width="70" DisplayMemberBinding="{Binding amount}" />
+                        <GridViewColumn Header="Unit" Width="30" DisplayMemberBinding="{Binding unit}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Grid Margin="5 5 5 5" DockPanel.Dock="Top" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Height="30" Content="Igredient Name: " Grid.Column="0" Grid.Row="0"/>
+                <TextBox Background="Beige" Height="30" Name="newIngredientNameTextBox" Grid.Column="1" Grid.Row="0"/>
+                <Label Height="30" Content="Amount: " Grid.Column="0" Grid.Row="1"/>
+                <StackPanel Height="30" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                    <TextBox Background="Beige" Width="100" Name="newIngredientAmountTextBox"/>
+                    <ComboBox Width="80" Name="newIngredientUnitComboBox"/>
+                </StackPanel>
+
+            </Grid>
+			<UniformGrid Height="30" Rows="1">
 				<Button Background="Beige" Name="addIngredientButton" Content="Add"/>
 				<Button Background="BlanchedAlmond" Name="removeIngredientButton" Content="Remove"/>
 			</UniformGrid>

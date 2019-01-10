@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +21,14 @@ namespace MiCasaUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        private BackendFacilities backendFacilities;
+        private ObservableCollection<Recepy> recepies;
+
         public MainWindow()
         {
             InitializeComponent();
+            OnRefreshRecepiesButtonClicked(null, null);
+            recepiesListView.ItemsSource = recepies;
 
             addRecepyButton.Click += OnAddRecepyButtonClicked;
             removeRecepyButton.Click += OnRemoveRecepyButtonClicked;
@@ -48,7 +54,8 @@ namespace MiCasaUI
 
         private void OnRefreshRecepiesButtonClicked(object sender, RoutedEventArgs e)
         {
-
+            backendFacilities = BackendFacilitiesRef.Get();
+            recepies = new ObservableCollection<Recepy>(backendFacilities.GetRecepies());
         }
     }
 }

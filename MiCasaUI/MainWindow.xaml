@@ -22,10 +22,8 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <ListView Grid.Row="0">
-
+                <ListView Grid.Row="0" Name="recepiesListView">
                 </ListView>
-
                 <UniformGrid Grid.Row="1" Columns="3">
                     <Button Margin="5 5 5 5" Name="addRecepyButton" Content="Add"/>
                     <Button Margin="5 5 5 5" Name="removeRecepyButton" Content="Remove"/>

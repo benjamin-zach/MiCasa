@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace MiCasaUI
 {
@@ -48,8 +51,13 @@ namespace MiCasaUI
     public class Recepy
     {
         public int id;
-        public List<IngredientInRecepy> ingredients;
-        public string name;
-        public string description;
+        public List<IngredientInRecepy> ingredients = new List<IngredientInRecepy>();
+        public string name { get; set; }
+        public string description { get; set; }
+
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }
