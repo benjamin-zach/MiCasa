@@ -21,18 +21,34 @@ namespace MiCasaUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static MainWindow instance;
         private BackendFacilities backendFacilities;
-        private ObservableCollection<Recepy> recepies;
+        private ObservableCollection<Recepy> recepies = new ObservableCollection<Recepy>();
+        public ObservableCollection<Meal> meals = new ObservableCollection<Meal>();
 
         public MainWindow()
         {
+            instance = this;
             InitializeComponent();
+
+            if(Properties.Settings.Default.FirstStartup)
+            {
+                FirstStartupWindow firstStartupWindow = new FirstStartupWindow();
+                Hide();
+                firstStartupWindow.Show();
+            }
+
             OnRefreshRecepiesButtonClicked(null, null);
             recepiesListView.ItemsSource = recepies;
+            mealsListView.ItemsSource = meals;
 
             addRecepyButton.Click += OnAddRecepyButtonClicked;
             removeRecepyButton.Click += OnRemoveRecepyButtonClicked;
             refreshRecepiesButton.Click += OnRefreshRecepiesButtonClicked;
+
+            addMealButton.Click += OnAddMealButtonClicked;
+            removeMealButton.Click += OnRemoveMealButtonClicked;
+            refreshMealsButton.Click += OnRefreshMealsButtonClicked;
         }
 
         private void OnSetDataBaseMenuItemClicked(object sender, RoutedEventArgs e)
@@ -45,17 +61,56 @@ namespace MiCasaUI
         {
             AddRecepyWindow addRecepyWindow = new AddRecepyWindow();
             addRecepyWindow.Show();
+            addRecepyWindow.okButton.Click += new RoutedEventHandler(delegate (object o, RoutedEventArgs args)
+            {
+                CollectionViewSource.GetDefaultView(recepies).Refresh();
+                addRecepyWindow.Close();
+            });
+
+        }
+
+        private void OnAddMealButtonClicked(object sender, RoutedEventArgs e)
+        {
+            AddCalendarMealWindow addCalendarMealWindow = new AddCalendarMealWindow();
+            addCalendarMealWindow.recepyComboBox.ItemsSource = recepies;
+            addCalendarMealWindow.okButton.Click += new RoutedEventHandler(delegate (object o, RoutedEventArgs a)
+            {
+                Meal meal = new Meal();
+                meal.date = (DateTime)addCalendarMealWindow.datePicker.SelectedDate;
+                meal.type = (MealType)addCalendarMealWindow.mealComboBox.SelectedItem;
+                meal.recepy = (Recepy)addCalendarMealWindow.recepyComboBox.SelectedItem;
+                meals.Add(meal);
+                CollectionViewSource.GetDefaultView(meals).Refresh();
+                addCalendarMealWindow.Close();
+            });
+            addCalendarMealWindow.cancelButton.Click += new RoutedEventHandler(delegate (object o, RoutedEventArgs a)
+            {
+                addCalendarMealWindow.Close();
+            });
+            addCalendarMealWindow.Show();
         }
 
         private void OnRemoveRecepyButtonClicked(object sender, RoutedEventArgs e)
         {
+            recepies.Remove((Recepy)recepiesListView.SelectedItem);
+            CollectionViewSource.GetDefaultView(recepies).Refresh();
+        }
 
+        private void OnRemoveMealButtonClicked(object sender, RoutedEventArgs e)
+        {
+            meals.Remove((Meal)mealsListView.SelectedItem);
+            CollectionViewSource.GetDefaultView(meals).Refresh();
         }
 
         private void OnRefreshRecepiesButtonClicked(object sender, RoutedEventArgs e)
         {
             backendFacilities = BackendFacilitiesRef.Get();
             recepies = new ObservableCollection<Recepy>(backendFacilities.GetRecepies());
+        }
+
+        private void OnRefreshMealsButtonClicked(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

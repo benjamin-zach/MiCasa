@@ -15,22 +15,75 @@
         <Grid DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10"/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
+            <GridSplitter Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <ListView Grid.Row="0" Name="recepiesListView">
-                </ListView>
-                <UniformGrid Grid.Row="1" Columns="3">
-                    <Button Margin="5 5 5 5" Name="addRecepyButton" Content="Add"/>
-                    <Button Margin="5 5 5 5" Name="removeRecepyButton" Content="Remove"/>
-                    <Button Margin="5 5 5 5" Name="refreshRecepiesButton" Content="Refresh"/>
-                </UniformGrid>
+                <Label Grid.Row="0" Content="Recepies:"/>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MaxWidth="50"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ListView Grid.Row="0" Grid.Column="1" DockPanel.Dock="Right" Name="recepiesListView">
+                    </ListView>
+                    <UniformGrid Grid.Row="0" Grid.Column="0" Rows="3">
+                        <Button Name="addRecepyButton">
+                            <Image Margin="10 10 10 10" Source="plus.png"/>
+                        </Button>
+                        <Button Name="removeRecepyButton">
+                            <Image Margin="10 10 10 10" Source="delete.png"/>
+                        </Button>
+                        <Button Name="refreshRecepiesButton">
+                            <Image Margin="10 10 10 10" Source="refresh.png"/>
+                        </Button>
+                    </UniformGrid>
+                </Grid>
             </Grid>
-
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Content="Meals:"/>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="*" MaxWidth="50"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView Name="mealsListView" Grid.Column="0">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Date" Width="160" DisplayMemberBinding="{Binding date_}"  />
+                                <GridViewColumn Header="Meal" Width="70" DisplayMemberBinding="{Binding type_}" />
+                                <GridViewColumn Header="Recepy" Width="200" DisplayMemberBinding="{Binding recepy_}" />
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <UniformGrid Grid.Column="1" Rows="4">
+                        <Button Name="addMealButton">
+                            <Image Margin="10 10 10 10" Source="plus.png"/>
+                        </Button>
+                        <Button Name="removeMealButton">
+                            <Image Margin="10 10 10 10" Source="delete.png"/>
+                        </Button>
+                        <Button Name="refreshMealsButton">
+                            <Image Margin="10 10 10 10" Source="refresh.png"/>
+                        </Button>
+                        <Button Name="generateShoppingListButton">
+                            <Image Margin="10 10 10 10" Source="shopping-cart.png"/>
+                        </Button>
+                    </UniformGrid>
+                </Grid>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>

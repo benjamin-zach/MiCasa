@@ -80,12 +80,12 @@ namespace MiCasaUI
             return ingredient;
         }
 
-        private string QUERY_GET_RECEPY = "SELECT * FROM Recepies WHERE Id = \"{0}\"";
+        private string QUERY_GET_RECEPY = "SELECT * FROM Recepies WHERE {1} = \"{0}\"";
         public Recepy GetRecepy(int id)
         {
             if (connection == null)
                 return null;
-            string query = string.Format(QUERY_GET_RECEPY, id.ToString());
+            string query = string.Format(QUERY_GET_RECEPY, id.ToString(), "Id");
             SQLiteCommand command = new SQLiteCommand(query, connection);
             SQLiteDataReader reader = command.ExecuteReader();
             Recepy recepy = null;
@@ -96,6 +96,25 @@ namespace MiCasaUI
                 recepy.id = (int)reader["Id"];
                 recepy.name = (string)reader["Name"];
                 recepy.ingredients = GetIngredientsInRecepy(id);
+            }
+            return recepy;
+        }
+
+        public Recepy GetRecepy(string name)
+        {
+            if (connection == null)
+                return null;
+            string query = string.Format(QUERY_GET_RECEPY, name, "Name");
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            SQLiteDataReader reader = command.ExecuteReader();
+            Recepy recepy = null;
+            while (reader.Read())
+            {
+                recepy = new Recepy();
+                recepy.description = (string)reader["Description"];
+                recepy.id = (int)reader["Id"];
+                recepy.name = (string)reader["Name"];
+                recepy.ingredients = GetIngredientsInRecepy(recepy.id);
             }
             return recepy;
         }

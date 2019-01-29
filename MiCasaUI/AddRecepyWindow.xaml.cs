@@ -91,13 +91,12 @@ namespace MiCasaUI
             {
                 Ingredient i = backendFacilities.GetIngredient(ingredient.name);
                 IngredientInRecepy iir = new IngredientInRecepy();
-                iir.amount = float.Parse(newIngredientAmountTextBox.Text);
-                iir.ingredientId = i.id;
-                iir.unit = (Unit)newIngredientUnitComboBox.SelectedItem;
+                iir.amount = ingredient.amount;
+                iir.ingredientId = i != null ? i.id : -1;
+                iir.unit = ingredient.unit;
                 recepy.ingredients.Add(iir);                    
             }
             backendFacilities.AddRecepy(recepy);
-            Close();
         }
 
         private void OnCancelButtonClicked(object sender, RoutedEventArgs e)

@@ -1,0 +1,25 @@
+﻿<Window x:Class="MiCasaUI.FirstStartupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MiCasaUI"
+        mc:Ignorable="d"
+        Title="First Startup" SizeToContent="Height" Width="250">
+    <StackPanel>
+        <Label Content="Select DB File:"/>
+        <UniformGrid Columns="2">
+            <Button Margin="10 10 10 10" Name="createDBButton" Content="Create New"/>
+            <Button Margin="10 10 10 10" Name="openDBButton" Content="Open Existing"/>
+        </UniformGrid>
+        <UniformGrid Name="openDBFileGrid" Visibility="Collapsed" Rows="2">
+            <Label   Margin="5 5 5 5" Grid.Row="0" Content="Open Existing DB:"/>
+            <TextBox Name="openDBFileTextBox" Margin="5 5 5 5" Grid.Row="1" />
+        </UniformGrid>
+        <UniformGrid Name="createDBFileGrid" Visibility="Collapsed" Rows="2">
+            <Label   Margin="5 5 5 5" Grid.Row="0" Content="Create new DB:"/>
+            <TextBox Name="createDBFileTextBox" Margin="5 5 5 5" Grid.Row="1" />
+        </UniformGrid>
+        <Button Visibility="Collapsed" Margin="10 10 10 10" Name="okButton" Content="OK"/>
+    </StackPanel>
+</Window>

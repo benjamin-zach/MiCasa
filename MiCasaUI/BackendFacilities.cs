@@ -11,6 +11,7 @@ namespace MiCasaUI
         Ingredient GetIngredient(int id);
         Ingredient GetIngredient(string name);
         Recepy GetRecepy(int id);
+        Recepy GetRecepy(string name);
         List<IngredientInRecepy> GetIngredientsInRecepy(int recepyId);
         List<Recepy> GetRecepies();
 
